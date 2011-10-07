@@ -1,0 +1,1 @@
+attrib *.elc +h /s

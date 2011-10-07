@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: emacs_env_check
+# key: emacs
+# --
+-------------  Emacs Enviroment Set.  ----------------
+
+if (EMACS_LUA_ENVIROMENT) then
+	${1:local tbTest = {};
+	setmetatable(
+		tbTest,
+		{
+			__index = function (tb,key) 
+						  local val = rawget(tb,key);
+						  if not val then return function () return {} end end;
+						  return val;
+					  end
+		}
+	);
+	}$2
+end
+------------------------------------------------------
+$0

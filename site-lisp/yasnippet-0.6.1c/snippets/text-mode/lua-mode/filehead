@@ -1,0 +1,14 @@
+#name : File Head
+# --
+-------------------------------------------------------------------
+--File		: `(buffer-name)`
+--Author	: `user-full-name`  (`user-mail-address`)
+--Date		: `(current-time-string)`
+--Describe	: $1
+-------------------------------------------------------------------
+${2:if not MODULE_GAMESERVER then
+	return;
+end
+}
+local print = function (...) _G.print("[${3:INFO}]",unpack(arg)); end;
+$0

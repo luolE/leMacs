@@ -1,0 +1,5 @@
+# name: for i = 1, n
+# --
+for ${1:i} = 1, ${2:n} do
+    $0
+end
