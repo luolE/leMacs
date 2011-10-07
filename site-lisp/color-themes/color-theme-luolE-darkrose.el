@@ -1,5 +1,5 @@
 (defun color-theme-luolE-darkrose ()
-  "Color subtheme, created 2011-10-04."
+  "Color subtheme, created 2011-10-07."
   (interactive)
   (color-theme-install
    '(color-theme-luolE-darkrose nil nil
@@ -130,7 +130,7 @@
      (message-header-cc ((t (:foreground "white"))))
      (message-cited-text-face ((t (:bold t :foreground "green" :weight bold))))
      (message-cited-text ((t (:foreground "#edd400"))))
-     (menu ((t (:foreground "systemmenutext" :background "systemmenu"))))
+     (menu ((t (:foreground "systemmenu" :background "systemmenutext"))))
      (match ((t (:bold t :background "#e9b96e" :foreground "#2e3436" :weight bold))))
      (list-mode-item-selected ((t (:background "gray68" :foreground "white"))))
      (linum ((t (:background "#1A1A1A" :foreground "#505050"))))
@@ -193,7 +193,7 @@
      (font-lock-doc-string-face ((t (:foreground "#D63724"))))
      (font-lock-doc-face ((t (:foreground "#888a85"))))
      (font-lock-constant-face ((t (:foreground "#0CCC2A"))))
-     (font-lock-comment-face ((t (:foreground "grey25"))))
+     (font-lock-comment-face ((t (:foreground "grey40"))))
      (font-lock-comment-delimiter-face ((t (:foreground "red"))))
      (font-lock-builtin-face ((t (:foreground "#4DB68E"))))
      (fl-type-face ((t (:foreground "yellow"))))
@@ -207,8 +207,8 @@
      (ffap ((t (:background "darkolivegreen"))))
      (expander-face ((t (:background "darkblue" :foreground "white"))))
      (evil-ex-substitute ((t (:foreground "red" :underline t))))
-     (evil-ex-search ((t (:foreground "#2e3436" :background "blue"))))
-     (evil-ex-lazy-highlight ((t (:foreground "#2e3436" :background "#e9b96e"))))
+     (evil-ex-search ((t (:background "blue" :foreground "#2e3436"))))
+     (evil-ex-lazy-highlight ((t (:background "#e9b96e" :foreground "#2e3436"))))
      (evil-ex-info ((t (:italic t :foreground "red" :slant italic))))
      (eshell-prompt-face ((t (:foreground "MediumAquamarine"))))
      (eshell-ls-unreadable-face ((t (:foreground "DimGray"))))
