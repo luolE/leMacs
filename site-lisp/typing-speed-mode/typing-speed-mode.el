@@ -26,7 +26,7 @@
 ;; Author: Craig Andera <candera@wangdera.com>
 
 ;; Commentary: Invoke this minor mode to have your typing speed
-;; continuously displayed in the mode line, in the format [75 WPM]
+;; continuously displayed in the mode line, in the format [75 APM]
 ;; To use, just load this file and invoke (typing-speed-mode) or
 ;; (turn-on-typing-speed-mode)
 
@@ -47,7 +47,7 @@
   "The window (in seconds) over which typing speed should be evaluated."
   :group 'typing-speed)
 
-(defcustom typing-speed-mode-text-format " [%s WPM]"
+(defcustom typing-speed-mode-text-format " [%s APM]"
   "A format string that controls how the typing speed is displayed in the mode line.
 Must contain exactly one %s delimeter where the typing speed will be inserted."
   :group 'typing-speed)
@@ -84,7 +84,7 @@ typing speed."
   (let* ((chars-per-second (/ (length typing-speed-event-queue) (float typing-speed-window)))
      (chars-per-min (* chars-per-second 60))
      (words-per-min (/ chars-per-min 5)))
-    (setq typing-speed-mode-text (format " [%s WPM]" (floor words-per-min)))
+    (setq typing-speed-mode-text (format " [%s APM]" (floor words-per-min)))
     (force-mode-line-update)))
 
 (defun typing-speed-remove-old-events (threshold queue)
