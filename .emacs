@@ -9,7 +9,7 @@
 ;; 功能开关 (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
 (setq *byte-code-cache-enabled* nil)
-
+(setq *vi-control-habit-enabled* nil)
 
 ;;----------------------------------------------------------------------------
 ;; 加载插件配置
@@ -17,10 +17,9 @@
 (require 'cl)
 (require 'init-elpa)
 (when *byte-code-cache-enabled* (require 'init-byte-code-cache))
+(require 'init-luolE-easy-keys)
 (require 'init-normal-config)
 (require 'init-color-theme)
-(require 'init-evil)
-(require 'init-luolE-easy-keys)
 (require 'init-editing-utils)
 (require 'init-moccur)
 (require 'init-ido)
@@ -37,6 +36,7 @@
 (require 'init-cmake-mode)
 (require 'init-one-key)
 (require 'init-highlight-symbol)
+(require 'init-indent-after-paste)
 
 
 ;;----------------------------------------------------------------------------
@@ -44,3 +44,9 @@
 ;;----------------------------------------------------------------------------
 (require 'server)
 (server-start)
+
+(setq shift-select-mode nil)
+(setq transient-mark-mode (and cua-mode
+               (if cua-highlight-region-shift-only
+                   (not cua--explicit-region-start)
+                 t)))
