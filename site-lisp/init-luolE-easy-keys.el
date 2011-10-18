@@ -79,9 +79,9 @@ occurence of CHAR."
 
 (defun delete-cur-word-or-cut-region ()
   "Delete current word or cut region if mark-actived."
-  (interactive "P")
+  (interactive)
   (if mark-active
-	  (cua-cut-region)
+	  (call-interactively 'cua-cut-region)
 	(delete-cur-word-without-kill-ring)))
 
 
@@ -391,8 +391,10 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (global-set-key (kbd "M-l") 'forward-char)
   (global-set-key (kbd "C-f") 'forward-page)
   (global-set-key (kbd "C-b") 'backward-page)
-  (global-set-key (kbd "M-y") 'cua-copy-region)
-  (global-set-key (kbd "M-p") 'cua-paste)
+  
+  ;; (global-set-key (kbd "C-y") 'cua-copy-region)
+  ;; (global-set-key (kbd "C-p") 'cua-paste)
+  
   ;;delete word without kill ring
   (global-set-key (kbd "C-d") 'delete-char)
   (global-set-key (kbd "M-d") 'delete-cur-word-or-cut-region)
@@ -404,8 +406,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 
   (define-key global-map (kbd "M-f") 'wy-go-to-char)
 
-  ;; (global-set-key (kbd "M-n") 'scroll-up)
-  ;; (global-set-key (kbd "M-p") 'scroll-down)
+  (global-set-key (kbd "M-n") 'scroll-up)
+  (global-set-key (kbd "M-p") 'scroll-down)
 
   (global-set-key (kbd "C-M-n") 'scroll-other-window)
   (global-set-key (kbd "C-M-p") 'scroll-other-window-down)

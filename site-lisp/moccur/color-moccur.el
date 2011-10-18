@@ -843,6 +843,9 @@ automatic display of the corresponding source code location."
    (featurep 'meadow)))
 (defvar moccur-grep-search-file-pos nil)
 
+(defvar moccur-mode-hook nil
+  "Hooks called when moccur mode fires up.")
+
 ;;; For All Emacs
 (defmacro string> (a b) (list 'not (list 'or (list 'string= a b)
                                          (list 'string< a b))))
@@ -2769,7 +2772,8 @@ It serves as a menu to find any of the occurrences in this buffer.
 (if moccur-mode-map
     ()
   (setq moccur-mode-map (make-sparse-keymap))
-  (setq moccur-mode-map (moccur-set-key)))
+  (setq moccur-mode-map (moccur-set-key))
+  )
 
 (defvar moccur-ee-mode-map ())
 (defun moccur-set-key-ee ()
@@ -3434,7 +3438,9 @@ line where it was found.
   (make-local-variable 'outline-regexp)
   (setq outline-regexp "\\(^Buffer: \\|^[ ]*[0-9]+ \\)")
   (make-local-variable 'outline-level)
-  (setq outline-level 'moccur-outline-level))
+  (setq outline-level 'moccur-outline-level)
+  (run-hooks 'moccur-mode-hook)
+  )
 
 (defun moccur-grep-mode ()
   "Major mode for output from \\[moccur-grep].
@@ -3462,7 +3468,10 @@ line where it was found.
   (make-local-variable 'outline-regexp)
   (setq outline-regexp "\\(^Buffer: File (grep): \\)")
   (make-local-variable 'outline-level)
-  (setq outline-level 'moccur-outline-level))
+  (setq outline-level 'moccur-outline-level)
+  (run-hooks 'moccur-mode-hook)
+  )
+
 
 ;;; grep-buffers
 ;;(require 'compile)

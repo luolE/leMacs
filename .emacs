@@ -14,6 +14,7 @@
 ;;----------------------------------------------------------------------------
 ;; º”‘ÿ≤Âº˛≈‰÷√
 ;;----------------------------------------------------------------------------
+(require 'cl)
 (require 'init-elpa)
 (when *byte-code-cache-enabled* (require 'init-byte-code-cache))
 (require 'init-normal-config)
@@ -35,12 +36,11 @@
 (require 'init-c-cpp-mode)
 (require 'init-cmake-mode)
 (require 'init-one-key)
+(require 'init-highlight-symbol)
 
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
 (require 'server)
-(unless (server-running-p)
-  (server-start))
-
+(server-start)

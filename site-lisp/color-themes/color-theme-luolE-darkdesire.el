@@ -230,7 +230,6 @@
      (cua-rectangle-noselect ((t (:background "dimgray" :foreground "white"))))
      (cua-rectangle ((t (:background "maroon" :foreground "white"))))
      (cua-global-mark ((t (:background "yellow1" :foreground "black"))))
-     (completions-first-difference ((t (:bold t :weight bold :underline nil :underline nil :weight))))
      (completions-common-part ((t (:underline nil :overline nil :strike-through nil :box nil :inverse-video nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "outline" :family "DejaVu Sans Mono"))))
      (completions-annotations ((t (:italic t :slant italic :underline nil :underline nil :slant))))
      (comint-highlight-prompt ((t (:foreground "#8ae234"))))

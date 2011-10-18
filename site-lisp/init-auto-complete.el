@@ -4,13 +4,6 @@
 (require 'auto-complete-yasnippet)
 (require 'auto-complete-etags)
 
-(global-auto-complete-mode t)
-(setq ac-auto-start nil)
-(setq ac-dwim nil) ; To get pop-ups with docs even if a word is uniquely completed
-(define-key ac-completing-map (kbd "C-n") 'ac-next)
-(define-key ac-completing-map (kbd "C-p") 'ac-previous)
-(add-to-list 'ac-dictionary-directories "~/site-lisp/auto-complete-dict")
-
 ;;----------------------------------------------------------------------------
 ;; Use Emacs' built-in TAB completion hooks to trigger AC (Emacs >= 23.2)
 ;;----------------------------------------------------------------------------
@@ -24,12 +17,11 @@
 
 
 (set-default 'ac-sources
-             '(ac-source-symbols
-			   ac-source-yasnippet
+             '(ac-source-semantic
+               ac-source-yasnippet
                ac-source-words-in-buffer
-			   ac-source-dictionary
-               ;; ac-source-words-in-same-mode-buffers
-               ;; ac-source-words-in-all-buffer
+               ac-source-words-in-all-buffer
+			   ac-source-symbols
 			   ))
 
 (dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
@@ -39,5 +31,17 @@
   (add-to-list 'ac-modes mode))
 
 
-
+;;--------------------------------------------------------------------
+;; Initialize
+;;--------------------------------------------------------------------
+(global-auto-complete-mode t)
+(setq ac-dwim nil) ; To get pop-ups with docs even if a word is uniquely completed
+(setq ac-auto-start nil) ;; 默认输入n个字母打开自动完成
+(setq ac-auto-show-menu t)
+(setq ac-expand-on-auto-complete t)
+(setq ac-quick-help-delay 1.0)
+(define-key ac-completing-map (kbd "C-n") 'ac-next)
+(define-key ac-completing-map (kbd "C-p") 'ac-previous)
+(add-to-list 'ac-dictionary-directories "~/site-lisp/auto-complete-dict")
+      
 (provide 'init-auto-complete)

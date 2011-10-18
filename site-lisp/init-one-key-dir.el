@@ -4,34 +4,51 @@
 
 (setq one-key-menu-luolE-dir-alist
       '(
-        
         (("1" . "麻将客户端脚本") . 
          (lambda ()
            (interactive) 
-           (dired "D:/adin.works/MJ.Source/SourceCode/gameworld/product/debug/client/script")) )
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/client/script")) )
         
         (("2" . "麻将客户端UI脚本") .
          (lambda ()
            (interactive)
-           (dired "e:/client/ui/script")) )
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/client/ui/script")) )
         
         (("3" . "麻将服务器端脚本") .
          (lambda ()
            (interactive) 
-           (dired "G:/_src/gameworld/product/debug/server/gameserver/script")) )
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script")) )
 		
-        (("w" . "反恐任务") .
+        (("w" . "当前工作任务目录") .
          (lambda ()
            (interactive) 
-           ;; (dired "D:/adin.works/MJ.Source/SourceCode/gameworld/product/debug/server/gameserver/script/task/daily_task")) )
-           (dired "d:/!adin.works/script/task/")) )
+           ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/daily_task")) )
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/gourmetrestaurant")) )
+           ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe")) )
+           ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/lib")) )
+		   ;; (dired "d:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/counter_strike")))
            ;; (dired "G:/_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe/")) ) ;
+		
+		(("t" . "服务器端任务相关脚本") .
+         (lambda ()
+           (interactive) 
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task")) )
+		
+		(("n" . "服务器NPC脚本") .
+         (lambda ()
+           (interactive) 
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/npc")) )
+		
+		(("l" . "服务器端LIB相关脚本") .
+         (lambda ()
+           (interactive) 
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/lib")) )
 		   
+
 		(("e" . "Emacs工作目录") .
          (lambda ()
            (interactive) 
-           (dired "~/")) )
-		
+           (dired "~/")) )		
 		))
 
 (defun one-key-menu-luolE-dir ()

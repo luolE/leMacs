@@ -1,11 +1,11 @@
 (defun color-theme-luolE-darkrose ()
-  "Color subtheme, created 2011-10-07."
+  "Color subtheme, created 2011-10-18."
   (interactive)
   (color-theme-install
    '(color-theme-luolE-darkrose nil nil
      (zmacs-region ((t (:background "snow" :foreground "blue"))))
      (yellow ((t (:foreground "yellow"))))
-     (yas/field-highlight-face ((t (:background "DimGrey"))))
+     (yas/field-highlight-face ((t (:background "medium sea green" :foreground "snow"))))
      (yas/field-debug-face ((t (nil))))
      (woman-unknown-face ((t (:foreground "LightSalmon"))))
      (woman-italic-face ((t (:foreground "beige"))))
@@ -130,7 +130,7 @@
      (message-header-cc ((t (:foreground "white"))))
      (message-cited-text-face ((t (:bold t :foreground "green" :weight bold))))
      (message-cited-text ((t (:foreground "#edd400"))))
-     (menu ((t (:foreground "systemmenu" :background "systemmenutext"))))
+     (menu ((t (:foreground "systemmenutext" :background "systemmenu"))))
      (match ((t (:bold t :background "#e9b96e" :foreground "#2e3436" :weight bold))))
      (list-mode-item-selected ((t (:background "gray68" :foreground "white"))))
      (linum ((t (:background "#1A1A1A" :foreground "#505050"))))
@@ -183,6 +183,8 @@
      (font-lock-variable-name-face ((t (:foreground "#6AE452"))))
      (font-lock-type-face ((t (:foreground "#E20C0C"))))
      (font-lock-string-face ((t (:foreground "#D63724"))))
+     (font-lock-regexp-grouping-construct ((t (:bold t :weight bold :underline nil))))
+     (font-lock-regexp-grouping-backslash ((t (:bold t :weight bold :underline nil))))
      (font-lock-reference-face ((t (:foreground "SlateBlue"))))
      (font-lock-preprocessor-face ((t (:foreground "Aquamarine"))))
      (font-lock-negation-char-face ((t (nil))))
@@ -300,6 +302,7 @@
      (cperl-nonoverridable-face ((t (:foreground "SkyBlue"))))
      (cperl-hash-face ((t (:foreground "darkseagreen"))))
      (cperl-array-face ((t (:foreground "darkseagreen"))))
+     (completions-first-difference ((t (:bold t :weight bold :underline nil))))
      (completions-common-part ((t (:underline nil :overline nil :strike-through nil :box nil :inverse-video nil :stipple nil :background "#2e3436" :foreground "#eeeeec" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "outline" :family "DejaVu Sans Mono"))))
      (completions-annotations ((t (:underline nil))))
      (comint-highlight-prompt ((t (:foreground "#8ae234"))))
