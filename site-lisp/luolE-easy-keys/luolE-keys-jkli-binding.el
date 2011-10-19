@@ -24,8 +24,8 @@
   (global-set-key (kbd "M-h") 'mark-line)
   (global-set-key (kbd "M-H") 'mark-defun)
   (global-set-key (kbd "C-n") 'delete-cur-line-in-anypos)
-  (global-set-key (kbd "M-w") 'mark-word)
-  (global-set-key (kbd "M-W") 'luolE-mark-char)
+  (global-set-key (kbd "M-W") 'mark-word)
+  (global-set-key (kbd "M-w") 'luolE-mark-char)
   ;; (global-set-key (kbd "M-z") 'set-mark-command)
   
   ;; Rebind M-a / M-e as the same as C-a / C-e
