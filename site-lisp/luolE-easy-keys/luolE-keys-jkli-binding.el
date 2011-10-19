@@ -3,9 +3,9 @@
 (defun change-movepos-keys-to-jkli ()
   "rebinding cursor movement keys to M-j,k,l,i"
   (interactive)
-  (global-set-key (kbd "M-j") 'backward-word)
+  (global-set-key (kbd "M-j") 'luolE-backward-word)
   (global-set-key (kbd "M-k") 'next-line)
-  (global-set-key (kbd "M-l") 'forward-word)
+  (global-set-key (kbd "M-l") 'luolE-forward-word)
   (global-set-key (kbd "M-i") 'previous-line)
   (global-set-key (kbd "M-u") 'backward-char)
   (global-set-key (kbd "M-o") 'forward-char)
@@ -26,7 +26,7 @@
   (global-set-key (kbd "C-n") 'delete-cur-line-in-anypos)
   (global-set-key (kbd "M-w") 'mark-word)
   (global-set-key (kbd "M-W") 'luolE-mark-char)
-  (global-set-key (kbd "M-z") 'set-mark-command)
+  ;; (global-set-key (kbd "M-z") 'set-mark-command)
   
   ;; Rebind M-a / M-e as the same as C-a / C-e
   (global-set-key (kbd "M-a") 'move-beginning-of-line)

@@ -1,3 +1,26 @@
+;; --------------------------------------------------
+(setq luolE-cursor-move-regexp "\<[A-z]+\\| +\\|[],'\"{}()[]\\|[^A-z]")
+(defun luolE-forward-word ()
+  (interactive)
+  (goto-char (+ (point) 1))
+  (search-forward-regexp luolE-cursor-move-regexp)
+  (goto-char (match-beginning 0))
+  )
+(defun luolE-backward-word ()
+  (interactive)
+  (goto-char (- (point) 1))
+  (search-backward-regexp luolE-cursor-move-regexp)
+  (goto-char (+ (match-beginning 0) 1))
+  )
+
+(dolist (cmd
+		 '(
+		   luolE-forward-word
+		   luolE-backward-word
+		   ))
+  (put cmd 'CUA 'move))
+
+;; --------------------------------------------------
 
 (defun kill-current-buffer ()
   (interactive)
