@@ -44,9 +44,3 @@
 ;;----------------------------------------------------------------------------
 (require 'server)
 (server-start)
-
-(setq shift-select-mode nil)
-(setq transient-mark-mode (and cua-mode
-               (if cua-highlight-region-shift-only
-                   (not cua--explicit-region-start)
-                 t)))

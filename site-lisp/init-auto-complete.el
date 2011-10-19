@@ -43,5 +43,12 @@
 (define-key ac-completing-map (kbd "C-n") 'ac-next)
 (define-key ac-completing-map (kbd "C-p") 'ac-previous)
 (add-to-list 'ac-dictionary-directories "~/site-lisp/auto-complete-dict")
-      
+
+
+;;--------------------------------------------------------------------
+;; Yasnippet Integration 
+;;--------------------------------------------------------------------
+(add-hook 'yas/before-expand-snippet-hook '(lambda() (setq ac-auto-start 2)))
+(add-hook 'yas/after-exit-snippet-hook '(lambda() (setq ac-auto-start nil)))
+
 (provide 'init-auto-complete)
