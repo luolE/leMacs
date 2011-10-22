@@ -4,8 +4,14 @@
 	  (append '(("CMakeLists\\.txt\\'" . cmake-mode)
 				("\\.cmake\\'" . cmake-mode))
 			  auto-mode-alist))
-
-;; 在cmake模式中加入ac自动完成
-(add-to-list 'ac-modes 'cmake-mode)
+;;--------------------------------------------------------------------
+;; auto-complete Intergration 
+;;--------------------------------------------------------------------
+(eval-after-load 'auto-complete
+  '(progn
+	 ;; 在cmake模式中加入AC模式
+	 (add-to-list 'ac-modes 'cmake-mode)
+	 )
+  )
 
 (provide 'init-cmake-mode)

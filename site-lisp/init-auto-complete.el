@@ -21,7 +21,7 @@
                ac-source-yasnippet
                ac-source-words-in-buffer
                ac-source-words-in-all-buffer
-			   ac-source-symbols
+			   ;; ac-source-symbols
 			   ))
 
 (dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
@@ -48,7 +48,10 @@
 ;;--------------------------------------------------------------------
 ;; Yasnippet Integration 
 ;;--------------------------------------------------------------------
-(add-hook 'yas/before-expand-snippet-hook '(lambda() (setq ac-auto-start 2)))
-(add-hook 'yas/after-exit-snippet-hook '(lambda() (setq ac-auto-start nil)))
+(eval-after-load 'yasnippet 
+  '(progn
+	 (add-hook 'yas/before-expand-snippet-hook '(lambda() (setq ac-auto-start 2)))
+	 (add-hook 'yas/after-exit-snippet-hook '(lambda() (setq ac-auto-start nil)))
+	 ))
 
 (provide 'init-auto-complete)

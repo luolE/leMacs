@@ -7,8 +7,6 @@
      ;; etags interface
      )))
 
-;; 在Lua模式中加入AC模式
-(add-to-list 'ac-modes 'lua-mode)
 
 (require 'align)
 ;; 在Lua模式中支持Align
@@ -60,5 +58,16 @@
 			(highlight-symbol-mode t)
 			)
 		  )
+
+
+;;--------------------------------------------------------------------
+;; auto-complete Intergration 
+;;--------------------------------------------------------------------
+(eval-after-load 'auto-complete
+  '(progn
+	 ;; 在Lua模式中加入AC模式
+	 (add-to-list 'ac-modes 'lua-mode)
+	 )
+  )
 
 (provide 'init-lua-mode)

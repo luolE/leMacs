@@ -20,8 +20,11 @@
 
 (require-package 'color-theme)
 (require-package 'highlight-symbol)
-(require-package 'lua-mode)
 (require-package 'auto-complete)
 (require-package 'highlight-parentheses)
+
+(require-package 'lua-mode)
+(require-package 'cmake-mode)
+(require-package 'php-mode)
 
 (provide 'init-elpa)

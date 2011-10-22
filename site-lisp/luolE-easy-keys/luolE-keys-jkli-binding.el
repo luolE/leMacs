@@ -26,7 +26,7 @@
   (global-set-key (kbd "C-n") 'delete-cur-line-in-anypos)
   (global-set-key (kbd "M-W") 'mark-word)
   (global-set-key (kbd "M-w") 'luolE-mark-char)
-  ;; (global-set-key (kbd "M-z") 'set-mark-command)
+  (global-set-key (kbd "M-z") 'set-mark-command)
   
   ;; Rebind M-a / M-e as the same as C-a / C-e
   (global-set-key (kbd "M-a") 'move-beginning-of-line)

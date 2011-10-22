@@ -31,6 +31,11 @@
 		evil-backward-word-end
 		evil-scroll-page-up
 		evil-scroll-page-down
+		moccur
+		moccur-grep
+		moccur-grep-find
+		luolE-forward-word
+		luolE-backward-word
 		)) 
 
 ;; 记录光标移动的最新范围

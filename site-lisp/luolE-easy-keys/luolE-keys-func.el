@@ -4,7 +4,7 @@
   (interactive)
   (goto-char (+ (point) 1))
   (search-forward-regexp luolE-cursor-move-regexp)
-  (goto-char (match-beginning 0))
+  (goto-char (- (point) 1))
   )
 (defun luolE-backward-word ()
   (interactive)
@@ -369,10 +369,11 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (global-set-key (kbd "M-c") 'backward-capitalize-word)
   (global-set-key (kbd "M-C") 'backward-upcase-word)
 
+  
   ;; 设置Shift+鼠标左键 为Windows习惯的扩充选择区域功能
- (define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
- (define-key global-map (kbd "<S-mouse-1>") 'mouse-set-point)
- (put 'mouse-set-point 'CUA 'move)
+  (define-key global-map (kbd "<S-down-mouse-1>") 'ignore) ; turn off font dialog
+  (define-key global-map (kbd "<S-mouse-1>") 'mouse-set-point)
+  (put 'mouse-set-point 'CUA 'move)
   )
 
 
@@ -386,6 +387,7 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (global-set-key (kbd "M-5") 'copy-current-buffername-to-killring)		;显示Buffer名字
   (global-set-key (kbd "M-9") 'kill-except-this-buffers)				;删除所有其他窗口
   (global-set-key (kbd "M-0") 'other-window)							;切换窗口
+  (global-set-key (kbd "<C-tab>") 'other-frame)
   )
 
 
