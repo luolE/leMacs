@@ -1,6 +1,4 @@
-;;光标坐标记录
-(autoload 'recent-jump-jump-forward "recent-jump" nil t)
-(autoload 'recent-jump-jump-backward "recent-jump" nil t)
+(require 'recent-jump)
 
 (setq recent-jump-hook-commands 
 	  '(next-line  

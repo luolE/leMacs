@@ -28,6 +28,7 @@
   )
 
 (defun copy-current-buffername-to-killring ()
+  "把当前的Buffer名字拷贝到粘贴板"
   (interactive)
   (kill-new (buffer-name (current-buffer)))
   (message (buffer-file-name (current-buffer)))
@@ -48,7 +49,7 @@ occurence of CHAR."
   "Delete current word and do not put it in kill ring. "
   (interactive)
   (let ((start-pos (point)))
-	(forward-word 1)
+	(luolE-forward-word)
 	(delete-region start-pos (point))
 	)
   )
@@ -64,10 +65,10 @@ occurence of CHAR."
 (defun delete-backward-word-without-kill-ring()
   "Delete backward  word and do not put it in kill ring. "
   (interactive)
-  (progn 
-    (mark-word (- 1))
-    (delete-region (region-beginning) (region-end))))
-
+	(let ((start-pos (point)))
+	  (backward-word)
+	  (delete-region (point) start-pos )
+	  ))
 
 (defun delete-cur-word-in-mid-word()
   "Delete current word in mid of the word.
@@ -206,7 +207,7 @@ And do not put it in kill ring. "
   "让前一个单词全部大写."
   (interactive)
   (let ((old-point (point)))
-	(backward-word 1)
+	(luolE-backward-word)
 	(while (< (point) old-point)
 	  (upcase-word 1))))
 
@@ -386,8 +387,8 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   (global-set-key (kbd "M-4") 'kill-current-buffer)						;删除当前Buffer
   (global-set-key (kbd "M-5") 'copy-current-buffername-to-killring)		;显示Buffer名字
   (global-set-key (kbd "M-9") 'kill-except-this-buffers)				;删除所有其他窗口
-  (global-set-key (kbd "M-0") 'other-window)							;切换窗口
-  (global-set-key (kbd "<C-tab>") 'other-frame)
+  (global-set-key (kbd "M-0") 'other-frame)								;切换窗口
+  ;; (global-set-key (kbd "<C-tab>") 'other-frame)
   )
 
 

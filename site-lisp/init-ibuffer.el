@@ -64,7 +64,10 @@
 (setq ibuffer-saved-filter-groups
       '(("home"
 		 
-         ("Game Server" (filename . "gameserver"))
+         ("Game Server" (or (filename . "gameserver")
+							(filename . "gamecenter")
+							))
+		 
          ;; ("Game Center" (filename . "gamecenter"))
          ;; ("Client" (filename . "client"))
          ("Game UI" (filename . "ui"))

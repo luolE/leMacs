@@ -19,6 +19,7 @@
   (global-set-key (kbd "C-d") 'delete-char)
   (global-set-key (kbd "M-d") 'delete-cur-word-or-cut-region)
   (define-key global-map [C-backspace] 'delete-backward-word-without-kill-ring)
+  (global-set-key (kbd "M-DEL") 'delete-backward-word-without-kill-ring)
 
   ;; other key bindings.
   (global-set-key (kbd "M-h") 'mark-line)
@@ -35,7 +36,6 @@
   ;;first char in current line.
   (global-set-key (kbd "M-s") 'back-to-indentation)
 )
-
 
 (progn
   (change-movepos-keys-to-jkli)
