@@ -32,6 +32,8 @@
 ;;--------------------------------------------------------------------
 (setq dired-recursive-deletes t) ; 可以递归的删除目录
 (setq dired-recursive-copies t) ; 可以递归的进行拷贝
+(setq ls-lisp-dirs-first t) ; 目录在前面
+(setq ls-lisp-verbosity nil) ; 显示内容
 
 
 

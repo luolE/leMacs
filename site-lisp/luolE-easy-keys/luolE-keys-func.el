@@ -249,7 +249,7 @@ And do not put it in kill ring. "
   (let ((point-save (point))
         (word-end)
         (res))
-    (forward-word)
+    (luolE-forward-word)
     (setq word-end (point))
     (goto-char point-save)
     (when (> word-end (point))
@@ -270,10 +270,6 @@ And do not put it in kill ring. "
     (when line
       (goto-line line)
       (beginning-of-line)
-      ;; fixed tab width problem.
-      ;; ========================
-      ;; TAB this is the test line
-      ;; ^
       (while (and (not res)
                   (not (eolp)))
         (if (>= (current-column) col)
@@ -332,6 +328,16 @@ And do not put it in kill ring. "
 	    (point))
 	  nil t))))
 
+(defun luolE-set-current-buffer-to-other-window ()
+  "复制Buffer至另一个窗口中."
+  (interactive)
+  (let ((cur-buffer (current-buffer)))
+	(with-selected-window (next-window)
+	  (switch-to-buffer cur-buffer)
+	  )
+	)
+  )
+
 (defun qiang-comment-dwim-line (&optional arg)
   "Replacement for the comment-dwim command.
 If no region is selected and current line is not blank and we are not at the end of the line,
@@ -381,14 +387,22 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
 (defun change-windows-control-keys ()
   "Define new windows contorl keys."
   (interactive)
-  (global-set-key (kbd "M-1") 'delete-other-windows)					;最大化当前窗口
-  (global-set-key (kbd "M-2") 'other-window)							;移动窗口
-  (global-set-key (kbd "M-3") 'split-window-horizontally)				;垂直分割窗口
-  (global-set-key (kbd "M-4") 'kill-current-buffer)						;删除当前Buffer
-  (global-set-key (kbd "M-5") 'copy-current-buffername-to-killring)		;显示Buffer名字
-  (global-set-key (kbd "M-9") 'kill-except-this-buffers)				;删除所有其他窗口
-  (global-set-key (kbd "M-0") 'other-frame)								;切换窗口
-  ;; (global-set-key (kbd "<C-tab>") 'other-frame)
+  ;; 最大化当前窗口
+  (global-set-key (kbd "M-1") 'delete-other-windows)
+  ;; 移动窗口
+  (global-set-key (kbd "M-2") 'other-window)
+  ;; 垂直分割窗口
+  (global-set-key (kbd "M-3") 'split-window-horizontally)
+  ;; 删除当前Buffer
+  (global-set-key (kbd "M-4") 'kill-current-buffer)
+  ;; 显示Buffer名字
+  (global-set-key (kbd "M-5") 'copy-current-buffername-to-killring)
+  ;; 删除所有其他窗口
+  (global-set-key (kbd "M-9") 'kill-except-this-buffers)
+  ;; 切换窗口
+  (global-set-key (kbd "M-0") 'other-frame)
+  ;; 复制当前窗口buff到另一个窗口
+  (global-set-key (kbd "M-\\") 'luolE-set-current-buffer-to-other-window)
   )
 
 

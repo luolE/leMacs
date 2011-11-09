@@ -2724,11 +2724,9 @@ It serves as a menu to find any of the occurrences in this buffer.
     (define-key map "/" 'moccur-mode-undo)
     ;;(define-key map "f" 'moccur-flush-lines) ;; M-x
     ;;(define-key map "" 'moccur-keep-lines) ;; M-x
-    (define-key map "q" 'moccur-quit)
-    (define-key map "n" 'moccur-next)
     (define-key map "p" 'moccur-prev)
-    (define-key map "j" 'moccur-next)
-    (define-key map "k" 'moccur-prev)
+    (define-key map "k" 'moccur-next)
+    (define-key map "i" 'moccur-prev)
 	(define-key map "\M-k" 'moccur-next)
     (define-key map "\M-i" 'moccur-prev)
 	(define-key map "\M-l" 'moccur-next)
@@ -2751,6 +2749,8 @@ It serves as a menu to find any of the occurrences in this buffer.
     (define-key map "l" 'moccur-prev-file)
     (define-key map "\M-n" 'moccur-next-file)
     (define-key map "\M-p" 'moccur-prev-file)
+    (define-key map "n" 'moccur-next-file)
+    (define-key map "p" 'moccur-prev-file)
     (define-key map '[M-wheel-down] 'moccur-next-file)
     (define-key map '[M-wheel-up] 'moccur-prev-file)
 

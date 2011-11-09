@@ -12,6 +12,8 @@
  (define-key ido-completion-map "\M- " 'ido-next-match)
  (define-key ido-completion-map "\M-n" 'ido-next-match)
  (define-key ido-completion-map "\M-p" 'ido-prev-match)
+ (define-key ido-completion-map "\M-l" 'ido-next-match)
+ (define-key ido-completion-map "\M-j" 'ido-prev-match)
  )
 
 
