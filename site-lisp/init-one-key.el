@@ -6,6 +6,7 @@
 
 (setq one-key-menu-luolE-main-alist
       '(
+		(("a" . "Anything-Mode") . (lambda() (interactive) (anything)))
 		(("d" . "Ä¿Â¼") . one-key-menu-luolE-dir)
 		(("e" . "ÅäÖÃ") . one-key-menu-luolE-config)
 		(("s" . "ËÑË÷") . one-key-menu-luolE-search)

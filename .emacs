@@ -51,6 +51,7 @@
 (require 'init-highlight-symbol)
 (require 'init-indent-after-paste)
 (require 'init-other-widgets)
+(require 'init-anything)
 (require 'init-sandbox)
 
 
