@@ -24,11 +24,23 @@
   (my-add-subdirs-to-load-path "~/site-lisp"))
 
 
+;;--------------------------------------------------------------------
+;; 前置配置项
+;;--------------------------------------------------------------------
+
+;; Windows下加入一些常用的程序目录
+(when (equal window-system 'w32)
+  ;; 常用程序
+  (setq exec-path (append exec-path '("~/widgets_bin")) )
+  ;; Git目录
+  (setq exec-path (append exec-path '("D:/develop_tools/Git/bin")) )
+  )
+
 ;;----------------------------------------------------------------------------
 ;; 加载插件配置
 ;;----------------------------------------------------------------------------
 (require 'cl)
-(require 'init-elpa)
+;;(require 'init-elpa)
 (when *byte-code-cache-enabled* (require 'init-byte-code-cache))
 (require 'init-luolE-easy-keys)
 (require 'init-normal-config)
@@ -60,3 +72,7 @@
 ;;----------------------------------------------------------------------------
 (require 'server)
 (or (server-running-p) (server-start))
+
+
+
+

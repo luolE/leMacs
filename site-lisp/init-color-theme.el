@@ -12,6 +12,9 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 
+;; º”‘ÿcolor-theme
+(require 'color-theme)
+
 ;; º”‘ÿ color-theme-maker ≤Âº˛
 ;; (require 'color-theme-maker)
 
