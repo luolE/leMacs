@@ -36,6 +36,18 @@
 (setq ls-lisp-verbosity nil) ; œ‘ æƒ⁄»›
 
 
+;;--------------------------------------------------------------------
+;; log-commands 
+;;--------------------------------------------------------------------
+(autoload 'mwe:log-keyboard-commands "mwe-log-commands" nil t)
+(autoload 'mwe:open-command-log-buffer "mwe-log-commands" nil t)
+
+(defun open-current-log-keyboard-command ()
+  "Open log keyboard command of current buffer."
+  (interactive)
+  (mwe:log-keyboard-commands)
+  (mwe:open-command-log-buffer)
+)
 
 ;; ;;;;;;;;;;;;;;;;;;;;;; FILE ENDS HERE ;;;;;;;;;;;;;;;;;;;;;;;;;;
 (provide 'init-other-widgets)
