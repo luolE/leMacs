@@ -36,7 +36,7 @@
 ;;--------------------------------------------------------------------
 (global-auto-complete-mode t)
 (setq ac-dwim nil) ; To get pop-ups with docs even if a word is uniquely completed
-(setq ac-auto-start t) ;; 默认输入n个字母打开自动完成
+(setq ac-auto-start 3) ;; 默认输入n个字母打开自动完成
 (setq ac-auto-show-menu 1)
 (setq ac-expand-on-auto-complete t)
 (setq ac-quick-help-delay 1.0)

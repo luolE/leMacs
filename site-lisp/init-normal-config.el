@@ -12,7 +12,7 @@
 (setq frame-title-format "<<%b>> @ %f")
 
 ;; 页面平滑移动(关闭页面向下移动时的翻页效果)
-(setq scroll-step 1 scroll-margin 3 scroll-conservatively 10000)
+;; (setq scroll-step 1 scroll-margin 3 scroll-conservatively 10000)
 
 ;;只渲染当前屏幕语法高亮，加快显示速度
 (setq font-lock-maximum-decoration t)

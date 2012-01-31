@@ -45,5 +45,11 @@
 ;; Get handy scratch buffers for any major mode
 (autoload 'scratch "scratch" nil t)
 
-	
+
+
+;;--------------------------------------------------------------------
+;; hl-line-mode 
+;;--------------------------------------------------------------------
+(global-hl-line-mode t)
+
 (provide 'init-editing-utils)
