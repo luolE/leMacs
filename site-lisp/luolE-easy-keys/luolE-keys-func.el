@@ -400,9 +400,9 @@ Replaces default behaviour of comment-dwim, when it inserts comment at the end o
   ;; 删除所有其他窗口
   (global-set-key (kbd "M-9") 'kill-except-this-buffers)
   ;; 切换窗口
-  (global-set-key (kbd "M-0") 'other-frame)
+  (global-set-key (kbd "M-\\") 'other-frame)
   ;; 复制当前窗口buff到另一个窗口
-  (global-set-key (kbd "M-\\") 'luolE-set-current-buffer-to-other-window)
+  (global-set-key (kbd "C-\\") 'luolE-set-current-buffer-to-other-window)
   )
 
 

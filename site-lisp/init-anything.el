@@ -21,12 +21,15 @@
 					 (get-files-recursive 
 					  "d:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/npc" 
 					  "\\.lua$")
+					 (list "d:/2.lua")
 					)
 					)
 )
 	
     ;; (type . file)
 	(action . find-file)
+	;; (real-to-display . (lambda(s) (format "abcdefg" s)))
+	;; (display-to-real . (lambda(s) (format "%s" s)))
     (requires-pattern . 2)
     (delayed)))
 
