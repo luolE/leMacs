@@ -11,9 +11,9 @@
 (add-to-list 'completion-styles 'initials t)
 
 ;; hook AC into completion-at-point
-(defun set-auto-complete-as-completion-at-point-function ()
-  (setq completion-at-point-functions '(auto-complete)))
-(add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+;; (defun set-auto-complete-as-completion-at-point-function ()
+;;   (setq completion-at-point-functions '(auto-complete)))
+;; (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
 
 
 (set-default 'ac-sources
@@ -36,22 +36,32 @@
 ;;--------------------------------------------------------------------
 (global-auto-complete-mode t)
 (setq ac-dwim nil) ; To get pop-ups with docs even if a word is uniquely completed
-(setq ac-auto-start 3) ;; 默认输入n个字母打开自动完成
-(setq ac-auto-show-menu 1)
+(setq ac-auto-start 2) ;; 默认输入n个字母打开自动完成
+(setq ac-auto-show-menu 0.1)
 (setq ac-expand-on-auto-complete t)
 (setq ac-quick-help-delay 1.0)
 (define-key ac-completing-map (kbd "C-n") 'ac-next)
 (define-key ac-completing-map (kbd "C-p") 'ac-previous)
+(define-key ac-completing-map (kbd "M-SPC") 'ac-stop)
+
 (add-to-list 'ac-dictionary-directories "~/site-lisp/auto-complete-dict")
 
 
 ;;--------------------------------------------------------------------
 ;; Yasnippet Integration 
 ;;--------------------------------------------------------------------
-(eval-after-load 'yasnippet 
-  '(progn
-	 (add-hook 'yas/before-expand-snippet-hook '(lambda() (setq ac-auto-start 2)))
-	 (add-hook 'yas/after-exit-snippet-hook '(lambda() (setq ac-auto-start nil)))
-	 ))
+;; (eval-after-load 'yasnippet 
+;;   '(progn
+	 ;; (add-hook 
+	 ;;  'yas/before-expand-snippet-hook 
+	 ;;  '(lambda() 
+	 ;; 	 (setq ac-auto-start 2)
+	 ;; 	 ))
+	 ;; (add-hook 
+	 ;;  'yas/after-exit-snippet-hook 
+	 ;;  '(lambda() 
+	 ;; 	 (setq ac-auto-start nil)
+	 ;; 	 ))
+	 ;; ))
 
 (provide 'init-auto-complete)

@@ -7,7 +7,13 @@
     (candidates . (lambda()
 					(append
 					 (get-files-recursive 
+					  "D:/adin.works/mj_src/gameworld/product/debug/server/gamecenter/script/pvp" 
+					  "\\.lua$")
+					 (get-files-recursive 
 					  "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe" 
+					  "\\.lua$")
+					 (get-files-recursive 
+					  "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/pvp/pvp2" 
 					  "\\.lua$")
 					 (get-files-recursive 
 					  "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/daily_task" 
@@ -21,6 +27,12 @@
 					 (get-files-recursive 
 					  "d:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/npc" 
 					  "\\.lua$")
+					 (get-files-recursive 
+					  "d:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/lib" 
+					  "\\.lua$")
+					 (get-files-recursive 
+					  "D:/adin.works/mj_src/gameworld/product/debug/client/ui/script/window"
+					  "\\.lua$")
 					 (list "d:/2.lua")
 					)
 					)
@@ -28,8 +40,11 @@
 	
     ;; (type . file)
 	(action . find-file)
-	;; (real-to-display . (lambda(s) (format "abcdefg" s)))
-	;; (display-to-real . (lambda(s) (format "%s" s)))
+	(real-to-display . (lambda(s)
+						 (if (string-match "[^/]*/[^/]*$" s)
+							 (match-string 0 s)
+						   (s)
+						 )))
     (requires-pattern . 2)
     (delayed)))
 

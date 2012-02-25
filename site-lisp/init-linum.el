@@ -78,28 +78,28 @@
 
 (require 'linum+)
 
-;; (dolist (hook (list
-;;                'c-mode-hook
-;;                'emacs-lisp-mode-hook
-;;                'lisp-interaction-mode-hook
-;;                'lisp-mode-hook
-;;                'emms-playlist-mode-hook
-;;                'java-mode-hook
-;;                'asm-mode-hook
-;;                'haskell-mode-hook
-;;                'rcirc-mode-hook
-;;                'emms-lyrics-mode-hook
-;;                'sh-mode-hook
-;;                'makefile-gmake-mode-hook
-;; 			   'lua-mode-hook
-;; 			   'python-mode-hook
-;; 			   'cmake-mode-hook
-;; 			   'php-mode-hook
-;;                ))
-;;   (add-hook hook (lambda () (linum-mode 1))))
+(dolist (hook (list
+               'c-mode-hook
+               'emacs-lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'lisp-mode-hook
+               'emms-playlist-mode-hook
+               'java-mode-hook
+               'asm-mode-hook
+               'haskell-mode-hook
+               'rcirc-mode-hook
+               'emms-lyrics-mode-hook
+               'sh-mode-hook
+               'makefile-gmake-mode-hook
+			   'lua-mode-hook
+			   'python-mode-hook
+			   'cmake-mode-hook
+			   'php-mode-hook
+               ))
+  (add-hook hook (lambda () (linum-mode 1))))
 
 ;; Fringe(让左边的Fringe不显示,避免与Linum冲突导致显示混乱)
-;; (fringe-mode '(0 . 5))
+(fringe-mode '(0 . 5))
 
 (setq linum+-smart-format "  %%%dd ")
 (global-set-key [f12] 'linum-mode)

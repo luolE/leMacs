@@ -31,9 +31,11 @@
 ;; Windows下加入一些常用的程序目录
 (when (equal window-system 'w32)
   ;; 常用程序
-  (setq exec-path (append exec-path '("~/widgets_bin")) )
+  (setq exec-path (append exec-path '("~/widgets")) )
   ;; Git目录
   (setq exec-path (append exec-path '("D:/develop_tools/Git/bin")) )
+  ;; 设置PATH
+  (setenv "PATH" (concat "D:\\develop_tools\\emacs\\widgets;" (getenv "PATH")))
   )
 
 ;;----------------------------------------------------------------------------
@@ -47,6 +49,7 @@
 (require 'init-editing-utils)
 (require 'init-color-theme)
 (require 'init-lua-mode)
+(require 'init-python-mode)
 (require 'init-c-cpp-mode)
 (require 'init-cmake-mode)
 (require 'init-php-mode)
@@ -71,8 +74,5 @@
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
 (require 'server)
-(or (server-running-p) (server-start))
-
-
-
-
+(server-force-delete)
+(server-start)
