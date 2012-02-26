@@ -1,0 +1,1 @@
+pyflakes.py %1
