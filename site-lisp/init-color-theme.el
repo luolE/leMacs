@@ -16,7 +16,7 @@
 (require 'color-theme)
 
 ;; 加载 color-theme-maker 插件
-;; (require 'color-theme-maker)
+(autoload 'color-theme-maker "color-theme-maker" nil t)
 
 ;; 加载 face-list 插件
 ;; (require 'face-list)
@@ -26,8 +26,8 @@
 ;; (color-theme-arjen)
 
 ;; 加载自定义主题
-;; (require 'color-theme-luolE-darknight)
-;; (color-theme-luolE-darknight)
+(require 'color-theme-luolE-darknight)
+(color-theme-luolE-darknight)
 
 ;; (require 'color-theme-luolE-element)
 ;; (color-theme-luolE-element)
@@ -35,8 +35,8 @@
 ;; (require 'color-theme-luolE-blood-and-sand)
 ;; (color-theme-luolE-blood-and-sand)
 
-(require 'color-theme-luolE-darkrose)
-(color-theme-luolE-darkrose)
+;; (require 'color-theme-luolE-darkrose)
+;; (color-theme-luolE-darkrose)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs 字体设置
@@ -46,12 +46,12 @@
 ;; 
 ;; Emacs.Font: DejaVu Sans Mono-10
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;;;;; 字体设置::英文字体 ;;;;;
-;; (set-default-font "ProFontWindows:pixelsize=12")
+;;;;;; 字体设置::英文字体 ;;;;;
+;; (set-default-font "ProFontWindows-10")	
 
 ;;;;;; 字体设置::中文字体 ;;;;;;
-;; (set-fontset-font (frame-parameter nil 'font)
-		  ;; 'han (font-spec :family "微软雅黑" :size 20))
+(set-fontset-font (frame-parameter nil 'font)
+		  'han (font-spec :family "微软雅黑" :size 15))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 窗口位置设置

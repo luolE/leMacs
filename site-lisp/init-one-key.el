@@ -11,7 +11,6 @@
 		(("e" . "配置") . one-key-menu-luolE-config)
 		(("s" . "搜索") . one-key-menu-luolE-search)
 		(("f" . "文件") . one-key-menu-luolE-file)
-		(("d" . "从中删除单词") . delete-cur-word-without-kill-ring)
 		(("h" . "高亮当前单词") . highlight-symbol-at-point)
 		(("w" . "天气预报") . (lambda () (interactive) ( cn-weather)  ))
 		(("b" . "缓冲区列表") . (lambda () (interactive) (ibuffer)))
