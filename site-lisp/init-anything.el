@@ -55,8 +55,8 @@
 	 (require 'anything-match-plugin)
 	 
 	 ;; 设置按键
-	 (define-key anything-map (kbd "M-p") 'anything-previous-line)
-	 (define-key anything-map (kbd "M-n") 'anything-next-line)
+	 (define-key anything-map (kbd "M-i") 'anything-previous-line)
+	 (define-key anything-map (kbd "M-k") 'anything-next-line)
 	 
 	 ;; 设置搜索源
 	 (setq anything-sources

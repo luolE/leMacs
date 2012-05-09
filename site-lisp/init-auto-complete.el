@@ -40,9 +40,10 @@
 (setq ac-auto-show-menu 0.1)
 (setq ac-expand-on-auto-complete t)
 (setq ac-quick-help-delay 1.0)
-(define-key ac-completing-map (kbd "C-n") 'ac-next)
-(define-key ac-completing-map (kbd "C-p") 'ac-previous)
-(define-key ac-completing-map (kbd "M-SPC") 'ac-stop)
+(define-key ac-completing-map (kbd "M-k") 'ac-next)
+(define-key ac-completing-map (kbd "M-i") 'ac-previous)
+;; (define-key ac-completing-map (kbd "M-SPC") 'ac-stop)
+(define-key ac-completing-map "\t" 'ac-stop)
 
 (add-to-list 'ac-dictionary-directories "~/site-lisp/auto-complete-dict")
 

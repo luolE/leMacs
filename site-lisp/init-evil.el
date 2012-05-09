@@ -1,4 +1,5 @@
 (require 'evil)
+;;(set evil-toggle-key "C-z")
 (evil-mode t)
 
 

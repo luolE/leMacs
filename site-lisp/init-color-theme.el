@@ -26,8 +26,8 @@
 ;; (color-theme-arjen)
 
 ;; 加载自定义主题
-(require 'color-theme-luolE-darknight)
-(color-theme-luolE-darknight)
+;; (require 'color-theme-luolE-darknight)
+;; (color-theme-luolE-darknight)
 
 ;; (require 'color-theme-luolE-element)
 ;; (color-theme-luolE-element)
@@ -35,8 +35,8 @@
 ;; (require 'color-theme-luolE-blood-and-sand)
 ;; (color-theme-luolE-blood-and-sand)
 
-;; (require 'color-theme-luolE-darkrose)
-;; (color-theme-luolE-darkrose)
+(require 'color-theme-luolE-darkrose)
+(color-theme-luolE-darkrose)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs 字体设置
