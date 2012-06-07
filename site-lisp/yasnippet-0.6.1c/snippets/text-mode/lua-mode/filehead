@@ -11,4 +11,5 @@ ${2:if not MODULE_GAMESERVER then
 end
 }
 local print = function (...) _G.print("[${3:INFO}]",unpack(arg)); end;
+local dbgout = function (...) if ${4:INFO}._dbgout then $4._dbgout(unpack(arg)) end end;
 $0

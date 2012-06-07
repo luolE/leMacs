@@ -66,6 +66,8 @@
   (change-movepos-keys-to-vi)
   (change-other-key-binding)
   (change-windows-control-keys)
+  (cua-mode t)
+  (setq cua-enable-cua-keys t)
   )
 ;; ------------------------------------------------------------
 

@@ -2,7 +2,7 @@
 ;;--------------------------------------------------------------------
 ;; 姓名地址信息 
 ;;--------------------------------------------------------------------
-(setq user-full-name "Ks.luolE")
+(setq user-full-name "KS.luolE")
 (setq user-mail-address "luole@kingsoft.com")
 
 
@@ -10,7 +10,7 @@
 ;; 功能开关 (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
 (setq *byte-code-cache-enabled* nil)
-(setq *vi-control-habit-enabled* t)
+(setq *vi-control-habit-enabled* nil)
 
 
 ;;--------------------------------------------------------------------
@@ -76,15 +76,4 @@
 (require 'server)
 (server-force-delete)
 (server-start)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(evil-toggle-key "C-`"))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
+

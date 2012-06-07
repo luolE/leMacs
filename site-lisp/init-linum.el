@@ -101,7 +101,7 @@
 ;; Fringe(让左边的Fringe不显示,避免与Linum冲突导致显示混乱)
 (fringe-mode '(0 . 5))
 
-(setq linum+-smart-format "  %%%dd ")
+(setq linum+-smart-format " %%%dd ")
 (global-set-key [f12] 'linum-mode)
 
 (provide 'init-linum)

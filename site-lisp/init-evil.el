@@ -1,5 +1,6 @@
 (require 'evil)
-;;(set evil-toggle-key "C-z")
+(set 'evil-toggle-key "C-`")
+
 (evil-mode t)
 
 
@@ -33,48 +34,66 @@
 
 
 ;;--------------------------------------------------------------------
+;; Dired-mode Intergration
+;;--------------------------------------------------------------------
+(eval-after-load 'dired
+  '(progn
+     ;; use the standard Dired bindings as a base
+     (evil-make-overriding-map dired-mode-map 'normal t)
+     (evil-define-key 'normal dired-mode-map
+					  "h" 'evil-backward-char
+					  "j" 'evil-next-line
+					  "k" 'evil-previous-line
+					  "l" 'evil-forward-char
+					  "n" 'evil-search-next
+					  "J" 'dired-goto-file       ; "j"
+					  "K" 'dired-do-kill-lines   ; "k"
+					  "r" 'dired-do-redisplay    ; "l"
+					  ))) 
+
+;;--------------------------------------------------------------------
 ;; Redefun evil-find-symbol (by word) 
 ;;--------------------------------------------------------------------
-(eval-after-load 'evil-search
-  '(progn
-	 (defun evil-find-symbol (forward)
-	   "redefun."
-	   (let ((move (if forward 'forward-char 'backward-char))
-			 (end (if forward 'eobp 'bobp))
-			 string)
-		 (save-excursion
-		   (setq string (thing-at-point 'word))
-		   ;; if there's nothing under point, go forwards
-		   ;; (or backwards) to find it
-		   (while (and (null string) (not (funcall end)))
-			 (funcall move)
-			 (setq string (thing-at-point 'word)))
-		   (when (stringp string)
-			 (set-text-properties 0 (length string) nil string))
-		   (when (> (length string) 0)
-			 string))))
+;; (eval-after-load 'evil-search
+;;   '(progn
+;; 	 (defun evil-find-symbol (forward)
+;; 	   "redefun."
+;; 	   (let ((move (if forward 'forward-char 'backward-char))
+;; 			 (end (if forward 'eobp 'bobp))
+;; 			 string)
+;; 		 (save-excursion
+;; 		   (setq string (thing-at-point 'word))
+;; 		   ;; if there's nothing under point, go forwards
+;; 		   ;; (or backwards) to find it
+;; 		   (while (and (null string) (not (funcall end)))
+;; 			 (funcall move)
+;; 			 (setq string (thing-at-point 'word)))
+;; 		   (when (stringp string)
+;; 			 (set-text-properties 0 (length string) nil string))
+;; 		   (when (> (length string) 0)
+;; 			 string))))
 	 
-	 (defun evil-search-symbol (forward)
-	   "redefun"
-	   (let ((string (car-safe regexp-search-ring))
-			 (move (if forward 'forward-char 'backward-char))
-			 (end (if forward 'eobp 'bobp)))
-		 (setq isearch-forward forward)
-		 (cond
-		  ((and (memq last-command
-					  '(evil-search-symbol-forward
-						evil-search-symbol-backward))
-				(stringp string)
-				(not (string= string "")))
-		   (evil-search string forward evil-search-wrap))
-		  (t
-		   (setq string (evil-find-symbol forward))
-		   (if (null string)
-			   (error "No symbol under point")
-			 (setq string (format "%s" (regexp-quote string))))
-			 ;; (setq string (format "%s\\_>" (regexp-quote string))))
-		   (evil-search string forward evil-search-wrap)))))
-	 ))
+;; 	 (defun evil-search-symbol (forward)
+;; 	   "redefun"
+;; 	   (let ((string (car-safe regexp-search-ring))
+;; 			 (move (if forward 'forward-char 'backward-char))
+;; 			 (end (if forward 'eobp 'bobp)))
+;; 		 (setq isearch-forward forward)
+;; 		 (cond
+;; 		  ((and (memq last-command
+;; 					  '(evil-search-symbol-forward
+;; 						evil-search-symbol-backward))
+;; 				(stringp string)
+;; 				(not (string= string "")))
+;; 		   (evil-search string forward evil-search-wrap))
+;; 		  (t
+;; 		   (setq string (evil-find-symbol forward))
+;; 		   (if (null string)
+;; 			   (error "No symbol under point")
+;; 			 (setq string (format "%s" (regexp-quote string))))
+;; 			 ;; (setq string (format "%s\\_>" (regexp-quote string))))
+;; 		   (evil-search string forward evil-search-wrap)))))
+;; 	 ))
 
 
 ;--------------End Of init-evil.el--------------

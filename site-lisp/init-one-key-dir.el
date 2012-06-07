@@ -24,8 +24,8 @@
            (interactive) 
            ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/daily_task")) )
            ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/gourmetrestaurant")) )
-		   (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gamecenter/script/pvp/")))
-           ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe")) )
+		   ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gamecenter/script/pvp/")))
+           (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe/new")) )
            ;; (dired "D:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/lib")) )
 		   ;; (dired "d:/adin.works/mj_src/gameworld/product/debug/server/gameserver/script/task/counter_strike")))
            ;; (dired "G:/_src/gameworld/product/debug/server/gameserver/script/pvp/yongzhe/")) ) ;
