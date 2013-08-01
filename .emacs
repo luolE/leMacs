@@ -67,6 +67,7 @@
 (require 'init-indent-after-paste)
 (require 'init-other-widgets)
 (require 'init-anything)
+(require 'init-ace-jump)
 (require 'init-sandbox)
 
 
