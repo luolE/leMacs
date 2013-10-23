@@ -10,6 +10,15 @@
 ;;--------------------------------------------------------------------
 ;; flymake-mode
 ;;--------------------------------------------------------------------
+
+;; 调试LOG开关
+;; (setq flymake-log-level 3)
+
+;; UI提示框 开关
+;; (setq flymake-gui-warnings-enabled nil)
+
+
+;; 需要把pyflakes安装到Python目录中
 (when (load "flymake" t)
   (defun flymake-pylint-init ()
 	(let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -17,7 +26,7 @@
            (local-file (file-relative-name
                         temp-file
                         (file-name-directory buffer-file-name))))
-	  (list "pyflakes" (list local-file))))
+	  (list "pyflakes.cmd" (list local-file))))
   
   (add-to-list 'flymake-allowed-file-name-masks
                '("\\.py\\'" flymake-pylint-init)))

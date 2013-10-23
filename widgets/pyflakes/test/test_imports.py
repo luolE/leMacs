@@ -2,27 +2,155 @@
 from sys import version_info
 
 from pyflakes import messages as m
-from pyflakes.test import harness
+from pyflakes.test.harness import TestCase, skip, skipIf
 
-class Test(harness.Test):
+
+class Test(TestCase):
 
     def test_unusedImport(self):
         self.flakes('import fu, bar', m.UnusedImport, m.UnusedImport)
         self.flakes('from baz import fu, bar', m.UnusedImport, m.UnusedImport)
 
     def test_aliasedImport(self):
-        self.flakes('import fu as FU, bar as FU', m.RedefinedWhileUnused, m.UnusedImport)
-        self.flakes('from moo import fu as FU, bar as FU', m.RedefinedWhileUnused, m.UnusedImport)
+        self.flakes('import fu as FU, bar as FU',
+                    m.RedefinedWhileUnused, m.UnusedImport)
+        self.flakes('from moo import fu as FU, bar as FU',
+                    m.RedefinedWhileUnused, m.UnusedImport)
 
     def test_usedImport(self):
-        self.flakes('import fu; print fu')
-        self.flakes('from baz import fu; print fu')
+        self.flakes('import fu; print(fu)')
+        self.flakes('from baz import fu; print(fu)')
+        self.flakes('import fu; del fu')
 
     def test_redefinedWhileUnused(self):
         self.flakes('import fu; fu = 3', m.RedefinedWhileUnused)
-        self.flakes('import fu; del fu', m.RedefinedWhileUnused)
         self.flakes('import fu; fu, bar = 3', m.RedefinedWhileUnused)
         self.flakes('import fu; [fu, bar] = 3', m.RedefinedWhileUnused)
+
+    def test_redefinedIf(self):
+        """
+        Test that importing a module twice within an if
+        block does raise a warning.
+        """
+        self.flakes('''
+        i = 2
+        if i==1:
+            import os
+            import os
+        os.path''', m.RedefinedWhileUnused)
+
+    def test_redefinedIfElse(self):
+        """
+        Test that importing a module twice in if
+        and else blocks does not raise a warning.
+        """
+        self.flakes('''
+        i = 2
+        if i==1:
+            import os
+        else:
+            import os
+        os.path''')
+
+    def test_redefinedTry(self):
+        """
+        Test that importing a module twice in an try block
+        does raise a warning.
+        """
+        self.flakes('''
+        try:
+            import os
+            import os
+        except:
+            pass
+        os.path''', m.RedefinedWhileUnused)
+
+    def test_redefinedTryExcept(self):
+        """
+        Test that importing a module twice in an try
+        and except block does not raise a warning.
+        """
+        self.flakes('''
+        try:
+            import os
+        except:
+            import os
+        os.path''')
+
+    def test_redefinedTryNested(self):
+        """
+        Test that importing a module twice using a nested
+        try/except and if blocks does not issue a warning.
+        """
+        self.flakes('''
+        try:
+            if True:
+                if True:
+                    import os
+        except:
+            import os
+        os.path''')
+
+    def test_redefinedTryExceptMulti(self):
+        self.flakes("""
+        try:
+            from aa import mixer
+        except AttributeError:
+            from bb import mixer
+        except RuntimeError:
+            from cc import mixer
+        except:
+            from dd import mixer
+        mixer(123)
+        """)
+
+    def test_redefinedTryElse(self):
+        self.flakes("""
+        try:
+            from aa import mixer
+        except ImportError:
+            pass
+        else:
+            from bb import mixer
+        mixer(123)
+        """, m.RedefinedWhileUnused)
+
+    def test_redefinedTryExceptElse(self):
+        self.flakes("""
+        try:
+            import funca
+        except ImportError:
+            from bb import funca
+            from bb import funcb
+        else:
+            from bbb import funcb
+        print(funca, funcb)
+        """)
+
+    def test_redefinedTryExceptFinally(self):
+        self.flakes("""
+        try:
+            from aa import a
+        except ImportError:
+            from bb import a
+        finally:
+            a = 42
+        print(a)
+        """)
+
+    def test_redefinedTryExceptElseFinally(self):
+        self.flakes("""
+        try:
+            import b
+        except ImportError:
+            b = Ellipsis
+            from bb import a
+        else:
+            from aa import a
+        finally:
+            a = 42
+        print(a, b)
+        """)
 
     def test_redefinedByFunction(self):
         self.flakes('''
@@ -51,7 +179,6 @@ class Test(harness.Test):
             pass
         ''', m.RedefinedWhileUnused)
 
-
     def test_redefinedBySubclass(self):
         """
         If an imported name is redefined by a class statement which also uses
@@ -63,7 +190,6 @@ class Test(harness.Test):
             pass
         ''')
 
-
     def test_redefinedInClass(self):
         """
         Test that shadowing a global with a class attribute does not produce a
@@ -73,28 +199,28 @@ class Test(harness.Test):
         import fu
         class bar:
             fu = 1
-        print fu
+        print(fu)
         ''')
 
     def test_usedInFunction(self):
         self.flakes('''
         import fu
         def fun():
-            print fu
+            print(fu)
         ''')
 
     def test_shadowedByParameter(self):
         self.flakes('''
         import fu
         def fun(fu):
-            print fu
+            print(fu)
         ''', m.UnusedImport)
 
         self.flakes('''
         import fu
         def fun(fu):
-            print fu
-        print fu
+            print(fu)
+        print(fu)
         ''')
 
     def test_newAssignment(self):
@@ -105,12 +231,12 @@ class Test(harness.Test):
         self.flakes('import fu; "bar".fu.baz', m.UnusedImport)
 
     def test_usedInSlice(self):
-        self.flakes('import fu; print fu.bar[1:]')
+        self.flakes('import fu; print(fu.bar[1:])')
 
     def test_usedInIfBody(self):
         self.flakes('''
         import fu
-        if True: print fu
+        if True: print(fu)
         ''')
 
     def test_usedInIfConditional(self):
@@ -130,7 +256,7 @@ class Test(harness.Test):
         self.flakes('''
         import fu
         if False: pass
-        else: print fu
+        else: print(fu)
         ''')
 
     def test_usedInCall(self):
@@ -155,14 +281,14 @@ class Test(harness.Test):
         import fu
         def bleh():
             pass
-        print fu
+        print(fu)
         ''')
 
     def test_usedInFor(self):
         self.flakes('''
         import fu
         for bar in range(9):
-            print fu
+            print(fu)
         ''')
 
     def test_usedInForElse(self):
@@ -171,7 +297,7 @@ class Test(harness.Test):
         for bar in range(10):
             pass
         else:
-            print fu
+            print(fu)
         ''')
 
     def test_redefinedByFor(self):
@@ -261,11 +387,12 @@ class Test(harness.Test):
         ''')
 
     def test_redefinedByExcept(self):
+        as_exc = ', ' if version_info < (2, 6) else ' as '
         self.flakes('''
         import fu
         try: pass
-        except Exception, fu: pass
-        ''', m.RedefinedWhileUnused)
+        except Exception%sfu: pass
+        ''' % as_exc, m.RedefinedWhileUnused)
 
     def test_usedInRaise(self):
         self.flakes('''
@@ -308,7 +435,6 @@ class Test(harness.Test):
     def test_redefinedByListComp(self):
         self.flakes('import fu; [1 for fu in range(1)]', m.RedefinedWhileUnused)
 
-
     def test_usedInTryFinally(self):
         self.flakes('''
         import fu
@@ -340,11 +466,16 @@ class Test(harness.Test):
         def f(): global fu
         ''', m.UnusedImport)
 
+    @skipIf(version_info >= (3,), 'deprecated syntax')
     def test_usedInBackquote(self):
         self.flakes('import fu; `fu`')
 
     def test_usedInExec(self):
-        self.flakes('import fu; exec "print 1" in fu.bar')
+        if version_info < (3,):
+            exec_stmt = 'exec "print 1" in fu.bar'
+        else:
+            exec_stmt = 'exec("print(1)", fu.bar)'
+        self.flakes('import fu; %s' % exec_stmt)
 
     def test_usedInLambda(self):
         self.flakes('import fu; lambda: fu')
@@ -384,12 +515,11 @@ class Test(harness.Test):
             import fu
             class b:
                 def c(self):
-                    print fu
+                    print(fu)
         ''')
 
     def test_importStar(self):
         self.flakes('from fu import *', m.ImportStarUsed)
-
 
     def test_packageImport(self):
         """
@@ -400,14 +530,12 @@ class Test(harness.Test):
         fu.bar
         ''')
 
-
     def test_unusedPackageImport(self):
         """
         If a dotted name is imported and not used, an unused import warning is
         reported.
         """
         self.flakes('import fu.bar', m.UnusedImport)
-
 
     def test_duplicateSubmoduleImport(self):
         """
@@ -423,7 +551,6 @@ class Test(harness.Test):
         import fu.bar
         fu.bar
         ''', m.RedefinedWhileUnused)
-
 
     def test_differentSubmoduleImport(self):
         """
@@ -452,8 +579,8 @@ class Test(harness.Test):
             import fu
         except ImportError:
             import bar as fu
+        fu
         ''')
-    test_tryingMultipleImports.todo = ''
 
     def test_nonGlobalDoesNotRedefine(self):
         self.flakes('''
@@ -482,6 +609,7 @@ class Test(harness.Test):
     def test_ignoreNonImportRedefinitions(self):
         self.flakes('a = 1; a = 2')
 
+    @skip("todo")
     def test_importingForImportError(self):
         self.flakes('''
         try:
@@ -489,20 +617,19 @@ class Test(harness.Test):
         except ImportError:
             pass
         ''')
-    test_importingForImportError.todo = ''
 
+    @skip("todo: requires evaluating attribute access")
     def test_importedInClass(self):
-        '''Imports in class scope can be used through self'''
+        """Imports in class scope can be used through self."""
         self.flakes('''
         class c:
             import i
             def __init__(self):
                 self.i
         ''')
-    test_importedInClass.todo = 'requires evaluating attribute access'
 
     def test_futureImport(self):
-        '''__future__ is special'''
+        """__future__ is special."""
         self.flakes('from __future__ import division')
         self.flakes('''
         "docstring is allowed before future import"
@@ -524,8 +651,7 @@ class Test(harness.Test):
         ''', m.LateFutureImport)
 
 
-
-class TestSpecialAll(harness.Test):
+class TestSpecialAll(TestCase):
     """
     Tests for suppression of unused import warnings by C{__all__}.
     """
@@ -540,7 +666,6 @@ class TestSpecialAll(harness.Test):
             __all__ = ["bar"]
         ''', m.UnusedImport, m.UnusedVariable)
 
-
     def test_ignoredInClass(self):
         """
         An C{__all__} definition does not suppress unused import warnings in a
@@ -552,7 +677,6 @@ class TestSpecialAll(harness.Test):
             __all__ = ["bar"]
         ''', m.UnusedImport)
 
-
     def test_warningSuppressed(self):
         """
         If a name is imported and unused but is named in C{__all__}, no warning
@@ -562,7 +686,6 @@ class TestSpecialAll(harness.Test):
         import foo
         __all__ = ["foo"]
         ''')
-
 
     def test_unrecognizable(self):
         """
@@ -577,7 +700,6 @@ class TestSpecialAll(harness.Test):
         import foo
         __all__ = [] + ["foo"]
         ''', m.UnusedImport)
-
 
     def test_unboundExported(self):
         """
@@ -594,6 +716,14 @@ class TestSpecialAll(harness.Test):
             __all__ = ["foo"]
             ''', filename=filename)
 
+    def test_importStarExported(self):
+        """
+        Do not report undefined if import * is used
+        """
+        self.flakes('''
+        from foolib import *
+        __all__ = ["foo"]
+        ''', m.ImportStarUsed)
 
     def test_usedInGenExp(self):
         """
@@ -602,14 +732,13 @@ class TestSpecialAll(harness.Test):
         self.flakes('import fu; (fu for _ in range(1))')
         self.flakes('import fu; (1 for _ in range(1) if fu)')
 
-
     def test_redefinedByGenExp(self):
         """
         Re-using a global name as the loop variable for a generator
         expression results in a redefinition warning.
         """
-        self.flakes('import fu; (1 for fu in range(1))', m.RedefinedWhileUnused)
-
+        self.flakes('import fu; (1 for fu in range(1))',
+                    m.RedefinedWhileUnused, m.UnusedImport)
 
     def test_usedAsDecorator(self):
         """
@@ -638,14 +767,12 @@ class TestSpecialAll(harness.Test):
         ''', m.UndefinedName)
 
 
-class Python26Tests(harness.Test):
+class Python26Tests(TestCase):
     """
     Tests for checking of syntax which is valid in PYthon 2.6 and newer.
     """
-    if version_info < (2, 6):
-        skip = "Python 2.6 required for class decorator tests."
 
-
+    @skipIf(version_info < (2, 6), "Python >= 2.6 only")
     def test_usedAsClassDecorator(self):
         """
         Using an imported name as a class decorator results in no warnings,
