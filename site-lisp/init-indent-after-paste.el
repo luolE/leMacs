@@ -1,3 +1,8 @@
+
+;;--------------------------------------------------------------------
+;; 拷贝代码自动格式化 
+;;--------------------------------------------------------------------
+
 (dolist (command '(yank yank-pop))
   (eval
    `(defadvice ,command (after indent-region activate)
@@ -5,7 +10,7 @@
            (member major-mode
                    '(emacs-lisp-mode
                      lisp-mode
-                     python-mode
+                     ;; python-mode
                      c-mode
                      c++-mode
                      objc-mode
