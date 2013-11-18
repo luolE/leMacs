@@ -1,1 +1,1 @@
-C:\\Python27\\python.exe C:\\Software\\emacs\\widgets\\pyflakes %*
+C:\\Python27\\python.exe C:\\Software\\emacs\\widgets\\pyflakes.py %*
